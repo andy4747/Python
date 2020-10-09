@@ -50,6 +50,14 @@ def log_return(func):
         return func(*args,**kwargs)
     return wrapper
 
+def add(a, b):
+    return a + b
 
 
+if __name__ == "__main__":
+    
+    @log_exception
+    @log_return
+    @logtime
+    add(10,10)
         
