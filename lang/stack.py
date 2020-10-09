@@ -1,9 +1,6 @@
 class Stack:
     
     def __init__(self):
-        """
-        Initializing a list for stacking
-        """
         self.items = []
         
     def push(self, item):

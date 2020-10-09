@@ -9,18 +9,12 @@ class PasswordGen:
         self.length = length
 
     def user_input(self):
-        """
-        verifies the length of password
-        """
         self.length = int(input("Enter length for your password: "))
-        if self.length<=7 or self.length>64:
+        if self.length<=7:
             return
         return self.length
 
     def generate_password(self):
-        """
-        generates password based on the length provided by the user
-        """
         passwrd = ''
         try:
             for i in range(self.user_input()):

@@ -7,3 +7,4 @@ class MyException(Exception):
 
 
 raise MyException('test')
+

@@ -1,10 +1,11 @@
-def count_instances(arr):
-	count=dict()
-	for item in arr:
-		if item in count:
-			count[item]+=1
-		else:
-			count=1
-	return count
+def instance_counter(arr):
+    counter=dict()
+    for i in range(len(arr)):
+        if arr[i] in counter:
+            counter[arr[i]]+=1
+        else:
+            counter[arr[i]]=1
+    return counter
 
-print(count_instances([1,1,1,2,2,3,3,3,3,4,4,4,4,4,5,5,9,9,9]))
+my_list=[1,1,1,2,2,2,3,3,5,5,5]
+print(instance_counter(my_list))
