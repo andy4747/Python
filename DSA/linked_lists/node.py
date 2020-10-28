@@ -1,11 +1,11 @@
 class Node:
 
-    def __init__(self,data=None):
+    def __init__(self, data=None):
         self.data = data
         self.next = None
         self.previous = None
 
-    def __repr__(self):
+    def __str__(self):
         return f"{self.data}"
 
 
