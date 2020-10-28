@@ -3,19 +3,19 @@ from node import Node
 class LinkedList:
 
     def __init__(self):
-        self.head = None
-        self.current_node = None
-
-    def build_from_list(self, array):
-        self.head_value = array[0]
-        current_node = Node(self.head_value)
-
-        for index, value in enumerate(array[1:], 1):
-            print(current_node)
-            current_node.next = Node(value)
+        self.head = Node()
+    
+    def append(self, data):
+        new_node = Node(data)
+        current_node = self.head
+        while current_node.next != None:
             current_node = current_node.next
+        current_node.next = new_node
 
 
 if __name__ == "__main__":
-    ll = LinkedList()
-    ll.build_from_list([10,20,30,40,50,60])
+    l = LinkedList()
+    l.append(10)
+    l.append(20)
+    l.append(30)
+    l.append(50)
