@@ -12,6 +12,12 @@ class LinkedList:
             current_node = current_node.next
         current_node.next = new_node
 
+    def display(self):
+        current_node = self.head
+        while current_node.next != None:
+            current_node = current_node.next
+            print(current_node.data)
+
 
 if __name__ == "__main__":
     l = LinkedList()
@@ -19,3 +25,4 @@ if __name__ == "__main__":
     l.append(20)
     l.append(30)
     l.append(50)
+    l.display()
