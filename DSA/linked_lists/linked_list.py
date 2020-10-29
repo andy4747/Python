@@ -37,11 +37,45 @@ class LinkedList:
             len += 1
         return len
 
+    def get_list(self):
+        """
+        returns all the items from linked list as an array
+        """
+        items = []
+        current_node = self.head
+        while current_node.next != None:
+            current_node = current_node.next
+            items.append(current_node.data)
+        return items
+
+    def index_of(self, item):
+        """
+        returns the index of an item,
+        returns first instance if multiple are presented in list
+        """
+        len = -1
+        current_node = self.head
+        while current_node.next != None:
+            current_node = current_node.next
+            len += 1
+            if current_node.data == item:
+                return len
+        return None
+
+
 if __name__ == "__main__":
     l = LinkedList()
+    l.append(0)
     l.append(10)
     l.append(20)
     l.append(30)
+    l.append(40)
     l.append(50)
+    l.append(60)
+    l.append(70)
+    l.append(80)
+    l.append(90)
     print(l.length)
     l.display()
+    print(l.get_list())
+    print(l.index_of(90))
