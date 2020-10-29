@@ -76,6 +76,14 @@ class LinkedList:
             if length == index:
                 return current_node.data
 
+    def clear(self):
+        current_node = self.head
+        while current_node.next != None:
+            previous = current_node.next
+
+            del current_node.data
+
+            current_node = previous
 
 
 if __name__ == "__main__":
