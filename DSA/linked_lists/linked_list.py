@@ -60,7 +60,22 @@ class LinkedList:
             len += 1
             if current_node.data == item:
                 return len
-        return None
+        raise ValueError("Item not in list.")
+
+    def get(self, index):
+        """
+        returns the item from the specified index
+        """
+        length = -1
+        if index >= self.length:
+            raise IndexError("index out of bound")
+        current_node = self.head
+        while current_node.next != None:
+            current_node = current_node.next
+            length += 1
+            if length == index:
+                return current_node.data
+
 
 
 if __name__ == "__main__":
@@ -79,3 +94,6 @@ if __name__ == "__main__":
     l.display()
     print(l.get_list())
     print(l.index_of(90))
+    print(l.get(0))
+    l.clear()
+    l.display()
