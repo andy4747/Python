@@ -5,9 +5,6 @@ class Node:
         self.next = None
         self.previous = None
 
-    def __str__(self):
-        return f"{self.data}"
-
 
 if __name__ == "__main__":
     node1 = Node(10)
