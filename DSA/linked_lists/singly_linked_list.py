@@ -1,140 +1,81 @@
 class Node:
-
-    def __init__(self, data=None):
+    def __init__(self, data) -> None:
         self.data = data
         self.next = None
 
-
 class LinkedList:
+    def __init__(self) -> None:
+        self.head = None
 
-    def __init__(self):
-        self.head = Node()
-    
-    def append(self, data):
-        """
-        adds item to the end of the list
-        """
+    def __iter__(self) -> None:
+        node = self.head
+        while node:
+            yield node.data
+            node = node.next
+
+    def __len__(self) -> int:
+        return len(tuple(iter(self)))
+
+    def __repr__(self) -> str:
+        return "=>".join([str(item) for item in self])
+
+    def __getitem__(self, index:int) -> Node:
+        if not 0 <= index <= len(self):
+            raise IndexError('list index out of range')
+        
+        for i, node in enumerate(self):
+            if i ==  index:
+                return node
+
+    def __setitem__(self, index:int, data) -> None:
+        if not 0 <= index <= len(self):
+            raise IndexError("list index out of range")
+        current_node = self.head
+        for _ in range(index):
+            current_node = current_node.next
+        current_node.data = data
+
+
+
+    def insert_at(self, index:int, data) -> None:
+        if not 0 <= index <= len(self):
+            raise IndexError("list index out of range")
         new_node = Node(data)
-        current_node = self.head
-        while current_node.next != None:
-            current_node = current_node.next
-        current_node.next = new_node
+        if self.head is None:
+            self.head = new_node
+        elif index == 0:
+            new_node.next = self.head
+            self.head = new_node
+        else:
+            current_node = self.head
+            for _ in range(index - 1):
+                current_node = current_node.next
+            new_node.next = current_node.next
+            current_node.next = new_node
 
-    def display(self):
-        """
-        prints all the items in linked list
-        """
-        current_node = self.head
-        while current_node.next != None:
-            current_node = current_node.next
-            print(current_node.data, end=" | ")
-        print()
+    def append(self, data) -> None:
+        self.insert_at(len(self), data)
 
-    @property
-    def length(self):
-        """
-        returns the length of the linked list
-        """
-        current_node = self.head
-        len = 0
-        while current_node.next != None:
-            current_node = current_node.next
-            len += 1
-        return len
+    def prepend(self, data) -> None:
+        self.insert_at(0, data)
 
-    def get_list(self):
-        """
-        returns all the items from linked list as an array
-        """
-        items = []
-        current_node = self.head
-        while current_node.next != None:
-            current_node = current_node.next
-            items.append(current_node.data)
-        return items
+    def is_empty(self):
+        return len(self) == 0
 
-    def index_of(self, item):
-        """
-        returns the index of an item,
-        returns first instance if multiple are presented in list
-        """
-        len = -1
-        current_node = self.head
-        while current_node.next != None:
-            current_node = current_node.next
-            len += 1
-            if current_node.data == item:
-                return len
-        raise ValueError("Item not in list.")
 
-    def get(self, index):
-        """
-        returns the item from the specified index
-        """
-        length = -1
-        if index >= self.length:
-            raise IndexError("index out of bound")
-        current_node = self.head
-        while current_node.next != None:
-            current_node = current_node.next
-            length += 1
-            if length == index:
-                return current_node.data
-
-    def clear(self):
-        """
-        deletes the linked list
-        """
-        current_node = self.head
-        while current_node.next != None:
-            previous = current_node.next
-
-            del current_node.data
-
-            current_node = previous
-
-    def insert(self, index, value):
-        """
-        inserts a given value at given index
-        """
-        # if given index is greater than the length of the list
-        if index >= self.length:
-            raise IndexError("Index out of bound")
-        
-        # new node to be inserted
-        new_node = Node(value)
-
-        current_node = self.head
-        for i in range(index):
-            current_node = current_node.next
-        new_node.next = current_node.next
-        current_node.next = new_node
-
-    def remove(self, index):
-        """
-        removes the value at given index
-        """
-        if index >= self.length:
-            raise IndexError("Index out of bound")
-
-        current_node = self.head
-        for i in range(index):
-            current_node = current_node.next
-        final_node = current_node.next
-        final_node = final_node.next
-        current_node.next = final_node
-        
 if __name__ == "__main__":
     l = LinkedList()
     l.append(10)
     l.append(20)
     l.append(30)
-    l.append(40)
-    l.append(50)
-    l.append(60)
-    l.append(70)
-    l.append(80)
-    l.append(90)
-    l.append(100)
-    l.remove(6)
-    l.display()
+    print(l[1])
+    print(l)
+    del l
+    # l.prepend(40)
+    # l.prepend(50)
+    # # print(len(l))
+    # l.insert_at(len(l),100)
+    # for i in l:
+    #     print(i)
+    # # print(l[0])
+    # print(l.test().data)

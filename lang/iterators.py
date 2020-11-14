@@ -10,7 +10,7 @@ class Reverse:
 	"""Iterator for looping over a squence backwards"""
 	def __init__(self,data):
 		self.data=data
-		self.index=len(data)
+		self.index=len(data) - 1
 
 	def __iter__(self):
 		return self
@@ -18,7 +18,7 @@ class Reverse:
 	def __next__(self):
 		if self.index==0:
 			raise StopIteration
-		self.index-=1
+		self.index -= 1
 		return self.data[self.index]
 
 r1=Reverse("spam")
@@ -46,15 +46,15 @@ for i in v:
 
 
 class EvenIndex:
-	def __init__(self,data):
-		self.data=data
-		self.index=0
+	def __init__(self,data:list):
+		self.data:list = data
+		self.index = 0
 
 	def __iter__(self):
 		return self
 
 	def __next__(self):
-		if self.index>=len(self.data):
+		if self.index >= len(self.data):
 			raise StopIteration
 		result=self.data[self.index]
 		self.index+=2
