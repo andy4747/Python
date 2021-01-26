@@ -1,10 +1,10 @@
 def instance_counter(arr):
     counter=dict()
-    for i in range(len(arr)):
-        if arr[i] in counter:
-            counter[arr[i]]+=1
+    for i in arr:
+        if arr in counter:
+            counter[arr]+=1
         else:
-            counter[arr[i]]=1
+            counter[arr]=1
     return counter
 
 my_list=[1,1,1,2,2,2,3,3,5,5,5]
